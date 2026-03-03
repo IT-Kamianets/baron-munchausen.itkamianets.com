@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" role="img" aria-label="Skyscanner Hotels">
+  <rect x="6" y="6" width="52" height="52" rx="14" fill="#2f5fd1"/>
+  <path d="M18 40c10-8 18-10 28-10-6 2-10 6-12 10 6-1 10 0 12 2-8 4-18 4-28-2Z" fill="#fff"/>
+</svg>

@@ -1,14 +1,576 @@
-﻿<main class="home">
-	<app-hero></app-hero>
-	<app-trust-bar></app-trust-bar>
-	<app-about></app-about>
-	<app-features></app-features>
-	<app-how-it-works></app-how-it-works>
-	<app-list-items-section></app-list-items-section>
-	<app-showcase></app-showcase>
-	<app-use-cases></app-use-cases>
-	<app-testimonials></app-testimonials>
-	<app-pricing></app-pricing>
-	<app-faq></app-faq>
-	<app-final-cta></app-final-cta>
+﻿<header #header class="site-header sticky-top">
+	<nav class="navbar navbar-expand-lg navbar-light">
+		<div class="container">
+			<a class="navbar-brand" href="#top" (click)="onNavClick('top', $event)">
+				<span class="brand-monogram">{{ content.footer.monogram }}</span>
+				<span class="brand-title">{{ content.brand.nameEn }}</span>
+				<span class="brand-tagline">{{ content.brand.tagline }}</span>
+			</a>
+			<button
+				class="navbar-toggler"
+				type="button"
+				(click)="toggleNav()"
+				[attr.aria-expanded]="isNavOpen"
+				aria-controls="site-nav"
+				aria-label="Toggle navigation"
+			>
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="site-nav" [class.show]="isNavOpen">
+				<ul class="navbar-nav ms-lg-auto">
+					<li class="nav-item" *ngFor="let item of navItems">
+						<a
+							class="nav-link"
+							[class.active]="activeSectionId === item.id"
+							[attr.href]="'#' + item.id"
+							(click)="onNavClick(item.id, $event)"
+						>
+							{{ item.navLabel }}
+						</a>
+					</li>
+				</ul>
+				<div class="nav-actions">
+					<span class="info-badge">{{ content.brand.infoNote }}</span>
+					<div class="lang-toggle" role="group" aria-label="Language toggle">
+						<button
+							type="button"
+							class="lang-btn"
+							[class.active]="currentLang === 'ua'"
+							(click)="setLang('ua')"
+							[attr.aria-pressed]="currentLang === 'ua'"
+						>
+							UA
+						</button>
+						<button
+							type="button"
+							class="lang-btn"
+							[class.active]="currentLang === 'en'"
+							(click)="setLang('en')"
+							[attr.aria-pressed]="currentLang === 'en'"
+						>
+							EN
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</nav>
+</header>
+
+<main>
+	<section id="top" data-section class="section hero-section">
+		<div class="hero-bg">
+			<img
+				class="hero-bg-image"
+				[src]="content.hero.image.src"
+				[alt]="content.hero.image.alt"
+				loading="lazy"
+			/>
+			<div class="hero-bg-overlay"></div>
+		</div>
+		<div class="container">
+			<div class="row align-items-center g-4">
+				<div class="col-lg-7">
+					<p class="hero-kicker">{{ content.hero.tagline }}</p>
+					<h1 class="hero-title">{{ content.hero.title }}</h1>
+					<div class="hero-badges">
+						<span *ngFor="let badge of content.hero.highlights" class="badge highlight-badge">
+							{{ badge }}
+						</span>
+					</div>
+					<div class="hero-actions">
+						<a
+							*ngFor="let cta of content.hero.ctas"
+							class="btn"
+							[ngClass]="cta.variant === 'primary' ? 'btn-primary' : 'btn-outline-primary'"
+							[attr.href]="cta.href"
+							(click)="cta.href.startsWith('#') ? onNavClick(cta.href.substring(1), $event) : null"
+						>
+							{{ cta.label }}
+						</a>
+					</div>
+					<span class="photo-credit" *ngIf="content.hero.image.credit">
+						{{ content.hero.image.credit }}
+					</span>
+				</div>
+				<div class="col-lg-5">
+					<div class="hero-card">
+						<div class="hero-card-header">
+							<img
+								class="hero-motif"
+								src="assets/brand/munchausen-motif.svg"
+								alt=""
+								aria-hidden="true"
+							/>
+							<span>{{ content.about.title }}</span>
+						</div>
+						<p>{{ content.about.lead }}</p>
+						<div class="legend-card">
+							<span class="legend-title">{{ content.atmosphere.headline }}</span>
+							<span class="legend-line">{{ content.about.promise }}</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="about" data-section class="section">
+		<div class="container">
+			<div class="section-header about-header">
+				<h2>{{ content.about.title }}</h2>
+				<p class="section-lead">{{ content.about.lead }}</p>
+			</div>
+			<div class="story-strip">
+				<div class="story-chip" *ngFor="let chip of content.about.chips">
+					<span class="chip-icon" [ngSwitch]="chip.icon">
+						<svg *ngSwitchCase="'traveler'" class="icon" viewBox="0 0 24 24" aria-hidden="true">
+							<path
+								d="M7 6a3 3 0 1 1 6 0 3 3 0 0 1-6 0Zm1 6h6l2 8h-2l-1-4h-4l-1 4H6l2-8Z"
+								fill="currentColor"
+							/>
+						</svg>
+						<svg *ngSwitchCase="'group'" class="icon" viewBox="0 0 24 24" aria-hidden="true">
+							<path
+								d="M8 11a3 3 0 1 1 6 0 3 3 0 0 1-6 0Zm7 1a2.5 2.5 0 1 1 5 0 2.5 2.5 0 0 1-5 0Zm-6 5h6v4H4v-2a2 2 0 0 1 2-2Zm9 0h2a2 2 0 0 1 2 2v2h-4v-4Z"
+								fill="currentColor"
+							/>
+						</svg>
+						<svg *ngSwitchCase="'quiet'" class="icon" viewBox="0 0 24 24" aria-hidden="true">
+							<path
+								d="M12 3c4.4 0 8 2.9 8 6.5S16.4 16 12 16 4 13.1 4 9.5 7.6 3 12 3Zm-4 14h8l-4 4-4-4Z"
+								fill="currentColor"
+							/>
+						</svg>
+					</span>
+					<span>{{ chip.label }}</span>
+				</div>
+			</div>
+			<div class="row g-4 align-items-stretch">
+				<div class="col-lg-7">
+					<p *ngFor="let paragraph of content.about.paragraphs" class="section-text">
+						{{ paragraph }}
+					</p>
+					<p class="about-promise">{{ content.about.promise }}</p>
+					<ul class="about-highlights">
+						<li *ngFor="let item of content.about.highlights">{{ item }}</li>
+					</ul>
+					<p class="section-text muted">{{ content.about.infoHint }}</p>
+				</div>
+				<div class="col-lg-5">
+					<div class="adventure-card">
+						<span class="adventure-stamp">{{ content.footer.monogram }}</span>
+						<div class="adventure-header">
+							<img
+								class="adventure-motif"
+								src="assets/brand/munchausen-motif.svg"
+								alt=""
+								aria-hidden="true"
+							/>
+							<span class="adventure-title">{{ content.about.legendTitle }}</span>
+						</div>
+						<p class="adventure-line">{{ selectedMicroLine }}</p>
+						<span class="adventure-subtitle">{{ content.about.expectTitle }}</span>
+						<ul class="adventure-list">
+							<li *ngFor="let item of content.about.expectations">{{ item }}</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="rooms" data-section class="section section-muted">
+		<div class="container">
+			<div class="section-header rooms-header">
+				<h2>{{ content.rooms.title }}</h2>
+				<p class="section-lead">{{ content.rooms.lead }}</p>
+				<div class="rooms-facts">
+					<span class="fact-pill" *ngFor="let fact of content.rooms.facts">{{ fact }}</span>
+				</div>
+				<div class="compass-divider" aria-hidden="true"></div>
+			</div>
+			<div class="room-filters">
+				<button
+					type="button"
+					class="btn btn-sm"
+					*ngFor="let filter of content.rooms.filters"
+					[class.btn-primary]="roomCategory === filter.id"
+					[class.btn-outline-primary]="roomCategory !== filter.id"
+					(click)="setRoomCategory(filter.id)"
+				>
+					{{ filter.label }}
+				</button>
+			</div>
+			<div class="row g-4">
+				<div class="col-md-6 col-lg-4" *ngFor="let room of filteredRooms">
+					<article class="room-card">
+						<div class="room-card-header">
+							<span class="room-icon" [ngSwitch]="room.icon">
+								<svg *ngSwitchCase="'dorm'" class="icon icon-lg" viewBox="0 0 24 24" aria-hidden="true">
+									<path
+										d="M4 4h16v4H4V4Zm0 6h16v10h-2v-2H6v2H4V10Zm3 2v4h4v-4H7Zm6 0v4h4v-4h-4Z"
+										fill="currentColor"
+									/>
+								</svg>
+								<svg *ngSwitchCase="'private'" class="icon icon-lg" viewBox="0 0 24 24" aria-hidden="true">
+									<path
+										d="M4 11l8-6 8 6v9h-5v-5H9v5H4v-9Z"
+										fill="currentColor"
+									/>
+								</svg>
+								<svg *ngSwitchCase="'studio'" class="icon icon-lg" viewBox="0 0 24 24" aria-hidden="true">
+									<path
+										d="M5 5h14v14H5V5Zm3 3v8h8V8H8Zm-3 12h14v2H5v-2Z"
+										fill="currentColor"
+									/>
+								</svg>
+							</span>
+							<h3 class="card-title">{{ room.title }}</h3>
+						</div>
+						<div class="room-badges">
+							<span class="badge room-badge">{{ room.capacity }}</span>
+							<span class="badge room-badge">{{ room.bathroom }}</span>
+						</div>
+						<ul class="card-list">
+							<li *ngFor="let feature of room.features">{{ feature }}</li>
+						</ul>
+						<p class="room-good-for">{{ room.goodFor }}</p>
+						<p class="card-note">{{ content.rooms.disclaimer }}</p>
+					</article>
+				</div>
+			</div>
+			<div class="room-note">
+				<span class="room-note-title">{{ content.rooms.noteTitle }}</span>
+				<ul>
+					<li *ngFor="let item of content.rooms.noteItems">{{ item }}</li>
+				</ul>
+			</div>
+		</div>
+	</section>
+
+	<section id="amenities" data-section class="section">
+		<div class="container">
+			<div class="section-header">
+				<h2>{{ content.amenities.title }}</h2>
+				<p class="section-lead">{{ content.amenities.lead }}</p>
+				<div class="compass-divider" aria-hidden="true"></div>
+			</div>
+			<div class="row g-4">
+				<div class="col-md-6 col-lg-4" *ngFor="let category of content.amenities.categories">
+					<article class="amenity-card">
+						<span class="amenity-icon" [ngSwitch]="category.icon">
+							<svg *ngSwitchCase="'comfort'" class="icon" viewBox="0 0 24 24" aria-hidden="true">
+								<path
+									d="M4 6h16v4H4V6Zm0 6h16v8H4v-8Zm3 2v4h4v-4H7Zm6 0v4h4v-4h-4Z"
+									fill="currentColor"
+								/>
+							</svg>
+							<svg *ngSwitchCase="'leisure'" class="icon" viewBox="0 0 24 24" aria-hidden="true">
+								<path
+									d="M7 4h10v4H7V4Zm-3 8h16v8H4v-8Zm3 2v4h4v-4H7Zm6 0v4h4v-4h-4Z"
+									fill="currentColor"
+								/>
+							</svg>
+							<svg *ngSwitchCase="'seasonal'" class="icon" viewBox="0 0 24 24" aria-hidden="true">
+								<path
+									d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z"
+									fill="currentColor"
+								/>
+							</svg>
+						</span>
+						<h3 class="card-title">{{ category.title }}</h3>
+						<ul class="card-list">
+							<li *ngFor="let item of category.items">{{ item }}</li>
+						</ul>
+						<p class="amenity-note" *ngIf="category.note">{{ category.note }}</p>
+					</article>
+				</div>
+			</div>
+			<div class="amenities-checklist">
+				<div class="check-item" *ngFor="let item of content.amenities.checklist">
+					<span class="check-icon" aria-hidden="true">✓</span>
+					<span>{{ item }}</span>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="atmosphere" data-section class="section atmosphere-section">
+		<div class="container">
+			<div class="row g-4 align-items-center">
+				<div class="col-lg-7">
+					<div class="section-header">
+						<h2>{{ content.atmosphere.title }}</h2>
+						<p class="section-lead">{{ content.atmosphere.headline }}</p>
+					</div>
+					<div class="atmosphere-pillars">
+						<div class="pillar-card" *ngFor="let item of content.atmosphere.pillars">
+							<span class="pillar-icon" [ngSwitch]="item.icon">
+								<svg *ngSwitchCase="'group'" class="icon" viewBox="0 0 24 24" aria-hidden="true">
+									<path
+										d="M7 10a3 3 0 1 1 6 0 3 3 0 0 1-6 0Zm7 2a2.5 2.5 0 1 1 5 0 2.5 2.5 0 0 1-5 0Zm-7 5h7v4H4v-2a2 2 0 0 1 2-2Zm10 0h2a2 2 0 0 1 2 2v2h-4v-4Z"
+										fill="currentColor"
+									/>
+								</svg>
+								<svg *ngSwitchCase="'motion'" class="icon" viewBox="0 0 24 24" aria-hidden="true">
+									<path
+										d="M5 12h7l-2-2 1.4-1.4L16.8 14l-5.4 5.4L10 18l2-2H5v-4Z"
+										fill="currentColor"
+									/>
+								</svg>
+								<svg *ngSwitchCase="'quiet'" class="icon" viewBox="0 0 24 24" aria-hidden="true">
+									<path
+										d="M12 4c4 0 7 2.7 7 6s-3 6-7 6-7-2.7-7-6 3-6 7-6Zm-4 14h8l-4 4-4-4Z"
+										fill="currentColor"
+									/>
+								</svg>
+							</span>
+							<div>
+								<h3>{{ item.title }}</h3>
+								<p>{{ item.text }}</p>
+							</div>
+						</div>
+					</div>
+					<p class="atmosphere-flourish">{{ content.atmosphere.flourish }}</p>
+					<div class="atmosphere-note">{{ content.atmosphere.eventNote }}</div>
+					<div class="atmosphere-chips">
+						<span class="pill-chip" *ngFor="let item of content.atmosphere.inspiration">
+							{{ item }}
+						</span>
+					</div>
+				</div>
+				<div class="col-lg-5">
+					<div class="legend-card story-postcard">
+						<span class="legend-title">{{ content.atmosphere.legendTitle }}</span>
+						<p class="legend-line">{{ selectedAtmosphereLegendLine }}</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="gallery" data-section class="section">
+		<div class="container">
+			<div class="section-header">
+				<h2>{{ content.gallery.title }}</h2>
+				<p class="section-lead" *ngIf="content.gallery.note">{{ content.gallery.note }}</p>
+			</div>
+			<p class="gallery-micro">{{ content.gallery.microLine }}</p>
+			<div class="row g-3">
+				<div class="col-12 col-md-6 col-lg-4" *ngFor="let item of visibleGallery">
+					<button type="button" class="gallery-card" (click)="openGallery(item)">
+						<div class="ratio ratio-4x3 gallery-media">
+							<img [src]="item.src" [alt]="item.alt" loading="lazy" decoding="async" />
+						</div>
+						<div class="gallery-card-body">
+							<span class="gallery-card-title">{{ item.title }}</span>
+							<span class="gallery-card-kind">{{ content.gallery.kindLabels[item.kind] }}</span>
+						</div>
+					</button>
+				</div>
+			</div>
+			<div class="gallery-actions">
+				<button type="button" class="btn btn-outline-primary" (click)="toggleGallery()">
+					{{ galleryExpanded ? content.gallery.lessLabel : content.gallery.moreLabel }}
+				</button>
+			</div>
+		</div>
+	</section>
+
+	<section id="location" data-section class="section section-muted">
+		<div class="container">
+			<div class="section-header">
+				<h2>{{ content.location.title }}</h2>
+			</div>
+			<div class="row g-4">
+				<div class="col-lg-6">
+					<p class="section-text">{{ content.location.address }}</p>
+					<p class="section-text muted">
+						{{ content.location.addressAltLabel }} {{ content.location.addressAlt }}
+					</p>
+					<div class="route-hint">
+						<span class="route-title">{{ content.location.routeTitle }}</span>
+						<ul>
+							<li *ngFor="let item of content.location.routeHints">{{ item }}</li>
+						</ul>
+					</div>
+					<ul class="distance-list">
+						<li *ngFor="let item of content.location.distances">
+							<span>{{ item.label }}</span>
+							<strong>{{ item.distance }}</strong>
+						</li>
+					</ul>
+					<p class="section-text muted">{{ content.location.storyLine }}</p>
+					<a
+						class="btn btn-outline-primary"
+						[href]="content.location.mapUrl"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						{{ content.location.mapLabel }}
+					</a>
+				</div>
+				<div class="col-lg-6">
+					<div class="ratio ratio-4x3 map-frame">
+						<iframe
+							[src]="mapEmbedUrl"
+							[title]="content.location.mapEmbedTitle"
+							loading="lazy"
+							referrerpolicy="no-referrer-when-downgrade"
+						></iframe>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="online" data-section class="section">
+		<div class="container">
+			<div class="section-header">
+				<h2>{{ content.online.title }}</h2>
+				<p class="section-lead">{{ content.online.lead }}</p>
+			</div>
+			<div class="row g-3">
+				<div class="col-12 col-md-6 col-lg-3" *ngFor="let link of content.externalLinks">
+					<a
+						class="platform-card"
+						[href]="link.url"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						<span class="platform-icon">
+							<img [src]="link.iconSrc" [alt]="link.title" loading="lazy" />
+						</span>
+						<span>
+							<span class="platform-label">{{ link.title }}</span>
+							<span class="platform-desc">{{ link.subtitle }}</span>
+						</span>
+					</a>
+				</div>
+			</div>
+			<div class="online-tip">
+				<span class="tip-stamp">{{ content.footer.monogram }}</span>
+				<div>
+					<span class="tip-title">{{ content.online.tipTitle }}</span>
+					<p class="tip-text">{{ content.online.tipText }}</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="contacts" data-section class="section section-muted">
+		<div class="container">
+			<div class="section-header">
+				<h2>{{ content.contacts.title }}</h2>
+			</div>
+			<div class="row g-4">
+				<div class="col-lg-6">
+					<p class="contact-name">{{ content.contacts.nameLine }}</p>
+					<div class="contact-actions">
+						<a
+							*ngFor="let phone of content.contacts.phones"
+							class="btn btn-outline-primary"
+							[attr.href]="'tel:' + phone.value"
+						>
+							{{ phone.display }}
+						</a>
+					</div>
+					<p class="section-text">{{ content.contacts.address }}</p>
+					<p class="section-text muted">
+						{{ content.contacts.addressAltLabel }} {{ content.contacts.addressAlt }}
+					</p>
+					<p class="section-text muted">{{ content.contacts.checkIn }}</p>
+					<p class="section-text muted">{{ content.contacts.checkOut }}</p>
+					<p class="section-text muted">{{ content.contacts.infoNote }}</p>
+				</div>
+				<div class="col-lg-6">
+					<div class="quick-actions">
+						<span class="quick-stamp">{{ content.footer.monogram }}</span>
+						<h3>{{ content.brand.infoNote }}</h3>
+						<div class="quick-buttons">
+							<a
+								class="btn btn-primary"
+								[href]="content.contacts.mapUrl"
+								target="_blank"
+								rel="noopener noreferrer"
+							>
+								{{ content.contacts.mapLabel }}
+							</a>
+							<button type="button" class="btn btn-outline-primary" (click)="onNavClick('online', $event)">
+								{{ content.contacts.platformsLabel }}
+							</button>
+							<button type="button" class="btn btn-outline-primary" (click)="copyMapLink()">
+								{{ content.contacts.shareLabel }}
+							</button>
+						</div>
+						<div class="alert alert-success mt-3" role="status" *ngIf="copySuccess">
+							{{ content.contacts.copySuccess }}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="faq" data-section class="section">
+		<div class="container">
+			<div class="section-header">
+				<h2>{{ content.faq.title }}</h2>
+			</div>
+			<div class="accordion" id="faq-accordion">
+				<div class="accordion-item" *ngFor="let item of content.faq.items; let i = index">
+					<h3 class="accordion-header" [id]="'faq-heading-' + i">
+						<button
+							class="accordion-button"
+							[class.collapsed]="activeFaqIndex !== i"
+							type="button"
+							(click)="toggleFaq(i)"
+							[attr.aria-controls]="'faq-collapse-' + i"
+							[attr.aria-expanded]="activeFaqIndex === i"
+						>
+							{{ item.question }}
+						</button>
+					</h3>
+					<div
+						[id]="'faq-collapse-' + i"
+						class="accordion-collapse collapse"
+						[class.show]="activeFaqIndex === i"
+						[attr.aria-labelledby]="'faq-heading-' + i"
+					>
+						<div class="accordion-body">{{ item.answer }}</div>
+					</div>
+				</div>
+			</div>
+			<p class="section-note">{{ content.faq.note }}</p>
+		</div>
+	</section>
 </main>
+
+<app-footer></app-footer>
+
+<div
+	*ngIf="selectedGalleryItem as item"
+	class="gallery-modal"
+	(click)="closeGallery()"
+>
+	<div
+		class="gallery-modal-dialog modal-dialog modal-dialog-centered modal-lg modal-fullscreen-sm-down"
+		[class.portrait]="isPortrait"
+		role="dialog"
+		aria-modal="true"
+		(click)="$event.stopPropagation()"
+	>
+		<button type="button" class="modal-close" (click)="closeGallery()">×</button>
+		<div class="modal-media">
+			<img [src]="item.src" [alt]="item.alt" />
+		</div>
+		<div class="modal-body">
+			<h3>{{ item.title }}</h3>
+			<p class="modal-kind">{{ content.gallery.kindLabels[item.kind] }}</p>
+		</div>
+		<div class="modal-footer" *ngIf="item.credit">
+			<span class="modal-credit">{{ content.gallery.creditLabel }} {{ item.credit }}</span>
+		</div>
+	</div>
+</div>

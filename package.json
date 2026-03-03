@@ -4,7 +4,8 @@
 	"scripts": {
 		"ng": "ng",
 		"start": "ng serve",
-		"build": "ng build"
+		"build": "ng build",
+		"fetch:gallery": "node scripts/fetch-gallery-images.mjs"
 	},
 	"prettier": {
 		"printWidth": 100,
@@ -32,15 +33,13 @@
 		"bootstrap": "^5.3.8",
 		"express": "^5.1.0",
 		"rxjs": "~7.8.0",
-		"tslib": "^2.3.0",
-		"wacom": "^21.2.1"
+		"tslib": "^2.3.0"
 	},
 	"devDependencies": {
 		"@angular/build": "^21.2.0",
 		"@angular/cli": "^21.2.0",
 		"@angular/compiler-cli": "^21.2.0",
 		"@angular/localize": "^21.2.0",
-		"@ng-bootstrap/ng-bootstrap": "^20.0.0",
 		"@types/express": "^5.0.1",
 		"@types/node": "^20.17.19",
 		"typescript": "~5.9.2"

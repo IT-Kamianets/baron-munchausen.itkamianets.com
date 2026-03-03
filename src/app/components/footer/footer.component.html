@@ -1,0 +1,64 @@
+﻿<footer class="site-footer">
+	<div class="container">
+		<div class="row g-4">
+			<div class="col-lg-4">
+				<div class="footer-brand">
+					<span class="footer-monogram">{{ content.footer.monogram }}</span>
+					<div>
+						<h3 class="footer-title">{{ content.footer.aboutTitle }}</h3>
+						<p class="footer-name">{{ content.brand.nameUa }}</p>
+						<p class="footer-description">{{ content.footer.description }}</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-4">
+				<h3 class="footer-title">{{ content.footer.navTitle }}</h3>
+				<ul class="footer-links">
+					<li *ngFor="let link of content.footer.navLinks">
+						<a [href]="link.href">{{ link.label }}</a>
+					</li>
+				</ul>
+			</div>
+			<div class="col-lg-4">
+				<h3 class="footer-title">{{ content.footer.contactTitle }}</h3>
+				<p class="footer-text">{{ content.contacts.address }}</p>
+				<p class="footer-text muted">
+					{{ content.contacts.addressAltLabel }} {{ content.contacts.addressAlt }}
+				</p>
+				<div class="footer-phones">
+					<a
+						*ngFor="let phone of content.contacts.phones"
+						[attr.href]="'tel:' + phone.value"
+					>
+						{{ phone.display }}
+					</a>
+				</div>
+				<p class="footer-text muted">{{ content.contacts.checkIn }}</p>
+				<p class="footer-text muted">{{ content.contacts.checkOut }}</p>
+				<div class="footer-icons">
+					<a
+						*ngFor="let icon of footerLinks"
+						[href]="icon.url"
+						target="_blank"
+						rel="noopener noreferrer"
+						[title]="icon.title"
+					>
+						<img [src]="icon.iconSrc" [alt]="icon.title" loading="lazy" />
+					</a>
+				</div>
+			</div>
+		</div>
+		<div class="footer-bottom">
+			<span>{{ content.footer.bottomLeft }}</span>
+			<a
+				class="footer-github"
+				[href]="content.footer.githubUrl"
+				[attr.target]="content.footer.githubExternal ? '_blank' : null"
+				[attr.rel]="content.footer.githubExternal ? 'noopener noreferrer' : null"
+				[title]="content.footer.githubLabel"
+			>
+				<span>{{ content.footer.githubIcon }}</span>
+			</a>
+		</div>
+	</div>
+</footer>

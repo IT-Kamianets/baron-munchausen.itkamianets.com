@@ -1,136 +1,63 @@
-/* You can add global styles to this file, and also import other style files */
-@import url('https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css');
-
-/* Design tokens (CSS variables). Runtime-themable; keep SCSS using var(--token) */
-:root {
-	/* brand / actions */
-	--c-primary: #256eff;
-	--c-primary-hover: #0051f1;
-	--c-secondary: #c53d3d;
-	--c-secondary-hover: #962a2a;
-
-	/* surfaces */
-	--c-bg-primary: #f3f4f7;
-	--c-bg-secondary: #ffffff;
-	--c-bg-tertiary: #fcfdfe;
-
-	/* content */
-	--c-text-primary: #5f6066;
-	--c-text-secondary: #17224f;
-	--c-text-muted: #8b8d94;
-	--c-placeholder: #313335ab;
-	--c-text-exeption: #c6c6c6;
-
-	/* borders & elevation */
-	--c-border: #eceef5;
-	--shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.06);
-	--shadow-md: 0 10px 30px rgba(0, 0, 0, 0.08);
-
-	/* typography */
-	--ff-base: 'Poppins', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-	--fs: 16px;
-	--letter-spacing: 0.3px;
-
-	/* radius (default rounded) */
-	--radius: 8px;
-	--radius-card: 10px;
-	--radius-btn: 10px;
-
-	/* spacing (default comfortable) */
-	--sp-0: 0px;
-	--sp-1: 4px;
-	--sp-2: 8px;
-	--sp-3: 12px;
-	--sp-4: 16px;
-	--sp-5: 20px;
-	--sp-6: 24px;
-	--sp-7: 32px;
-	--sp-8: 40px;
-
-	/* layout */
-	--container: 1210px;
-	--gutter: 10px;
-
-	/* motion */
-	--easing: cubic-bezier(0.25, 0.8, 0.25, 1);
-	--motion-fast: 0.15s;
-	--motion: 0.25s;
-	--motion-slow: 0.4s;
-
-	/* focus */
-	--focus-ring: 0 0 0 3px rgba(37, 110, 255, 0.35);
+﻿:root {
+	--parchment: #f6f0e5;
+	--parchment-strong: #fbf7ee;
+	--ink: #3a2f2a;
+	--ink-strong: #2a221e;
+	--muted: #6d5d52;
+	--brass: #b6873a;
+	--brass-dark: #9a6d2e;
+	--wine: #7a2e2e;
+	--font-display: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
+	--font-body: 'Trebuchet MS', 'Gill Sans', 'Segoe UI', sans-serif;
+	--shadow-soft: 0 12px 30px rgba(58, 47, 42, 0.08);
+	--shadow-strong: 0 18px 40px rgba(58, 47, 42, 0.16);
+	--header-offset: 80px;
 }
 
-/* ========= modes ========= */
-html[data-mode='dark'] {
-	/* surfaces */
-	--c-bg-primary: #282828;
-	--c-bg-secondary: #343434;
-	--c-bg-tertiary: #404040;
-
-	/* borders & elevation */
-	--c-border: #404040;
-	--shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.35);
-	--shadow-md: 0 10px 30px rgba(0, 0, 0, 0.45);
-
-	/* content */
-	--c-text-primary: #e8e8e8;
-	--c-text-secondary: #ffffff;
-	--c-text-muted: #b7b7b7;
-	--c-placeholder: #d3cdcd;
-	--c-text-exeption: #313335;
-
-	/* focus (keeps using primary) */
-	--focus-ring: 0 0 0 3px rgba(37, 110, 255, 0.35);
+html {
+	scroll-behavior: smooth;
 }
 
-/* ITKP = city brand colors */
-html[data-mode='itkp'] {
-	/* SURFACES */
-	--c-bg-primary: #e3f2fd; /* світло-блакитний */
-	--c-bg-secondary: #a7c7e7; /* синій */
-	--c-bg-tertiary: #fffde7; /* ледь жовтий */
-
-	/* ACCENTS */
-	--c-primary: #d4962a; /* приглушений золотий */
-	--c-primary-hover: #b87d20;
-	--c-secondary: #01579b; /* синій */
-	--c-secondary-hover: #004d84;
-
-	/* TEXT */
-	--c-text-primary: #2c3e50;
-	--c-text-secondary: #1a252f;
-	--c-text-muted: #546e7a;
-	--c-text-exeption: #2c3e50; /* червоний для помилок */
-
-	/* BORDERS & SHADOWS */
-	--c-border: #0700d33d;
-	--shadow-sm: 0 2px 5px rgba(1, 87, 155, 0.15);
-	--shadow-md: 0 12px 35px rgba(1, 87, 155, 0.2);
-
-	/* FOCUS RING */
-	--focus-ring: 0 0 0 4px rgba(249, 168, 37, 0.5);
+body {
+	font-family: var(--font-body);
+	background: linear-gradient(180deg, var(--parchment) 0%, #fff 35%, var(--parchment-strong) 100%);
+	color: var(--ink);
 }
 
-/* ========= density ========= */
-html[data-density='compact'] {
-	--sp-1: 2px;
-	--sp-2: 6px;
-	--sp-3: 10px;
-	--sp-4: 14px;
-	--sp-5: 18px;
-	--sp-6: 22px;
-	--sp-7: 28px;
-	--sp-8: 36px;
-
-	--gutter: 8px;
+section[data-section] {
+	scroll-margin-top: var(--header-offset);
 }
 
-/* ========= radius ========= */
-html[data-radius='square'] {
-	--radius: 0px;
-	--radius-card: 0px;
-	--radius-btn: 0px;
+a {
+	color: var(--wine);
 }
 
-/* test commit */
+a:hover {
+	color: var(--brass-dark);
+}
+
+.btn-primary {
+	background-color: var(--brass);
+	border-color: var(--brass);
+}
+
+.btn-primary:hover {
+	background-color: var(--brass-dark);
+	border-color: var(--brass-dark);
+}
+
+.btn-outline-primary {
+	color: var(--wine);
+	border-color: var(--wine);
+}
+
+.btn-outline-primary:hover {
+	background-color: var(--wine);
+	border-color: var(--wine);
+	color: #fff;
+}
+
+img {
+	max-width: 100%;
+	display: block;
+}

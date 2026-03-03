@@ -1,18 +1,18 @@
-﻿import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { RouterOutlet } from '@angular/router'; // Import RouterLink
-import { ThemeService } from 'wacom';
+﻿import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+import { LanguageService } from './services/language.service';
 
 @Component({
 	selector: 'app-root',
 	changeDetection: ChangeDetectionStrategy.OnPush,
-	imports: [RouterOutlet], // Add imports here
+	imports: [RouterOutlet],
 	templateUrl: './app.component.html',
 	styleUrl: './app.component.css',
 })
-export class AppComponent {
-	private _themeService = inject(ThemeService);
+export class AppComponent implements OnInit {
+	private languageService = inject(LanguageService);
 
-	constructor() {
-		this._themeService.init();
+	ngOnInit(): void {
+		this.languageService.initLang();
 	}
 }
