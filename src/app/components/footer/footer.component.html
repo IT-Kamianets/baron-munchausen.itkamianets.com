@@ -24,9 +24,9 @@
 				<a class="footer-text footer-link" [href]="content.contacts.mapUrl" target="_blank" rel="noopener noreferrer">
 					{{ content.contacts.address }}
 				</a>
-				<p class="footer-text muted">
+				<a class="footer-text footer-link footer-link-alt" [href]="content.contacts.mapUrl" target="_blank" rel="noopener noreferrer">
 					{{ content.contacts.addressAltLabel }} {{ content.contacts.addressAlt }}
-				</p>
+				</a>
 				<div class="footer-phones">
 					<a
 						*ngFor="let phone of content.contacts.phones"

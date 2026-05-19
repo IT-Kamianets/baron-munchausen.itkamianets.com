@@ -69,14 +69,25 @@
 }
 
 .footer-link,
-.footer-link:visited {
+.footer-link:visited,
+.footer-phones a {
 	color: #f5efe6;
 	text-decoration: none;
+	font-family: inherit;
+}
+
+.footer-link,
+.footer-link-alt {
+	display: block;
+	margin-bottom: 0.5rem;
 }
 
 .footer-link:hover,
-.footer-link:focus {
+.footer-link:focus,
+.footer-phones a:hover,
+.footer-phones a:focus {
 	color: #f5efe6;
+	text-decoration: none;
 }
 
 .footer-text.muted {
