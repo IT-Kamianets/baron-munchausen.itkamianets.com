@@ -271,7 +271,7 @@ const UA_CONTENT: GuestHouseContent = {
 			key: 'maps',
 			title: 'Google Maps',
 			url:
-				'https://www.google.com/maps/search/?api=1&query=Marshala+Kharchenka+24%2C+Kamianets-Podilskyi%2C+Ukraine',
+				'https://maps.app.goo.gl/G4Cc168vskM2NRrZ7',
 			iconSrc: 'assets/platforms/google-maps.svg',
 			subtitle: 'Локація та маршрут',
 		},
@@ -598,7 +598,7 @@ const UA_CONTENT: GuestHouseContent = {
 		],
 		mapLabel: 'Відкрити в Google Maps',
 		mapUrl:
-			'https://www.google.com/maps/search/?api=1&query=Marshala+Kharchenka+24%2C+Kamianets-Podilskyi%2C+Ukraine',
+			'https://maps.app.goo.gl/G4Cc168vskM2NRrZ7',
 		mapEmbedUrl:
 			'https://www.google.com/maps?q=Marshala+Kharchenka+24%2C+Kamianets-Podilskyi%2C+Ukraine&output=embed',
 		mapEmbedTitle: 'Барон Мюнхаузен — карта проїзду',
@@ -630,7 +630,7 @@ const UA_CONTENT: GuestHouseContent = {
 		addressAlt: 'вул. Петра Сагайдачного, 24',
 		mapLabel: 'Відкрити в Google Maps',
 		mapUrl:
-			'https://www.google.com/maps/search/?api=1&query=Marshala+Kharchenka+24%2C+Kamianets-Podilskyi%2C+Ukraine',
+			'https://maps.app.goo.gl/sW6TeTbsx75KJmRv7',
 		mapEmbedUrl:
 			'https://www.google.com/maps?q=Marshala+Kharchenka+24%2C+Kamianets-Podilskyi%2C+Ukraine&output=embed',
 		mapEmbedTitle: 'Барон Мюнхаузен — карта проїзду',
@@ -770,7 +770,7 @@ const EN_CONTENT: GuestHouseContent = {
 			key: 'maps',
 			title: 'Google Maps',
 			url:
-				'https://www.google.com/maps/search/?api=1&query=Marshala+Kharchenka+24%2C+Kamianets-Podilskyi%2C+Ukraine',
+				'https://maps.app.goo.gl/G4Cc168vskM2NRrZ7',
 			iconSrc: 'assets/platforms/google-maps.svg',
 			subtitle: 'Location and route',
 		},
@@ -1098,7 +1098,7 @@ const EN_CONTENT: GuestHouseContent = {
 		],
 		mapLabel: 'Open in Google Maps',
 		mapUrl:
-			'https://www.google.com/maps/search/?api=1&query=Marshala+Kharchenka+24%2C+Kamianets-Podilskyi%2C+Ukraine',
+			'https://maps.app.goo.gl/G4Cc168vskM2NRrZ7',
 		mapEmbedUrl:
 			'https://www.google.com/maps?q=Marshala+Kharchenka+24%2C+Kamianets-Podilskyi%2C+Ukraine&output=embed',
 		mapEmbedTitle: 'Baron Munchausen — directions map',
@@ -1130,7 +1130,7 @@ const EN_CONTENT: GuestHouseContent = {
 		addressAlt: 'Petra Sahaidachnoho St, 24',
 		mapLabel: 'Open in Google Maps',
 		mapUrl:
-			'https://www.google.com/maps/search/?api=1&query=Marshala+Kharchenka+24%2C+Kamianets-Podilskyi%2C+Ukraine',
+			'https://maps.app.goo.gl/G4Cc168vskM2NRrZ7',
 		mapEmbedUrl:
 			'https://www.google.com/maps?q=Marshala+Kharchenka+24%2C+Kamianets-Podilskyi%2C+Ukraine&output=embed',
 		mapEmbedTitle: 'Baron Munchausen — directions map',

@@ -21,7 +21,9 @@
 			</div>
 			<div class="col-lg-4">
 				<h3 class="footer-title">{{ content.footer.contactTitle }}</h3>
-				<p class="footer-text">{{ content.contacts.address }}</p>
+				<a class="footer-text footer-link" [href]="content.contacts.mapUrl" target="_blank" rel="noopener noreferrer">
+					{{ content.contacts.address }}
+				</a>
 				<p class="footer-text muted">
 					{{ content.contacts.addressAltLabel }} {{ content.contacts.addressAlt }}
 				</p>

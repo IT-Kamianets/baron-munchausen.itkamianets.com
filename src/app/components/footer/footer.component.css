@@ -68,6 +68,17 @@
 	margin-bottom: 0.5rem;
 }
 
+.footer-link,
+.footer-link:visited {
+	color: #f5efe6;
+	text-decoration: none;
+}
+
+.footer-link:hover,
+.footer-link:focus {
+	color: #f5efe6;
+}
+
 .footer-text.muted {
 	color: rgba(255, 255, 255, 0.65);
 }
