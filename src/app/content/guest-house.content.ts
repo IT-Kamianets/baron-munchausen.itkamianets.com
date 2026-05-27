@@ -15,6 +15,7 @@ export interface NavPage {
 export interface ActionLink {
 	label: string;
 	href: string;
+	fragment?: string;
 	variant: 'primary' | 'outline';
 	action?: 'booking';
 }
@@ -311,7 +312,7 @@ const UA_CONTENT: GuestHouseContent = {
 		ctas: [
 			{ label: 'Зателефонувати', href: 'tel:+380675101504', variant: 'primary' },
 			{ label: 'Забронювати', href: '#', variant: 'primary', action: 'booking' },
-			{ label: 'Платформи бронювання', href: '/contacts', variant: 'outline' },
+			{ label: 'Платформи бронювання', href: '/contacts', fragment: 'online', variant: 'outline' },
 		],
 		image: {
 			src: 'assets/hero/hero-castle.jpg',
@@ -830,7 +831,7 @@ const EN_CONTENT: GuestHouseContent = {
 		ctas: [
 			{ label: 'Call us', href: 'tel:+380675101504', variant: 'primary' },
 			{ label: 'Book now', href: '#', variant: 'primary', action: 'booking' },
-			{ label: 'Booking platforms', href: '/contacts', variant: 'outline' },
+			{ label: 'Booking platforms', href: '/contacts', fragment: 'online', variant: 'outline' },
 		],
 		image: {
 			src: 'assets/hero/hero-castle.jpg',

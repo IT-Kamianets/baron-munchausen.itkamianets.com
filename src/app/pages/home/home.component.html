@@ -35,6 +35,7 @@
 								[ngClass]="cta.variant === 'primary' ? 'btn-primary' : 'btn-outline-primary'"
 								[attr.href]="!cta.href.startsWith('/') ? cta.href : null"
 								[routerLink]="cta.href.startsWith('/') ? cta.href : null"
+								[fragment]="cta.fragment"
 								[attr.target]="cta.href.startsWith('http') ? '_blank' : null"
 								[attr.rel]="cta.href.startsWith('http') ? 'noopener noreferrer' : null"
 								(click)="onCtaClick(cta.href, cta.label)"
