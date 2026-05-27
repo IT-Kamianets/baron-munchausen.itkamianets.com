@@ -1,0 +1,19 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" width="640" height="420" viewBox="0 0 640 420" role="img" aria-label="Ресепція">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f7f1e6" />
+      <stop offset="100%" stop-color="#fbf7ef" />
+    </linearGradient>
+  </defs>
+  <rect width="640" height="420" fill="url(#bg)" />
+  <rect x="28" y="28" width="584" height="364" rx="26" fill="none" stroke="#b6873a" stroke-width="3" />
+  <ellipse cx="320" cy="160" rx="28" ry="36" fill="none" stroke="#7a2e2e" stroke-width="3" />
+<path d="M320 196v34" stroke="#7a2e2e" stroke-width="3" stroke-linecap="round" />
+<path d="M312 240h16" stroke="#7a2e2e" stroke-width="3" stroke-linecap="round" />
+  <text x="320" y="300" text-anchor="middle" fill="#3a2f2a" font-family="Palatino, serif" font-size="22">
+    Ресепція
+  </text>
+  <text x="320" y="330" text-anchor="middle" fill="#6d5d52" font-family="Trebuchet MS, sans-serif" font-size="14">
+    Фотогалерея доповнюється
+  </text>
+</svg>
