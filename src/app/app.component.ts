@@ -1,11 +1,13 @@
-﻿import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { FooterComponent } from './components/footer/footer.component';
+import { HeaderComponent } from './components/header/header.component';
 import { LanguageService } from './services/language.service';
 
 @Component({
 	selector: 'app-root',
 	changeDetection: ChangeDetectionStrategy.OnPush,
-	imports: [RouterOutlet],
+	imports: [RouterOutlet, HeaderComponent, FooterComponent],
 	templateUrl: './app.component.html',
 	styleUrl: './app.component.css',
 })

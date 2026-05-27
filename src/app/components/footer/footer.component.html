@@ -15,7 +15,8 @@
 				<h3 class="footer-title">{{ content.footer.navTitle }}</h3>
 				<ul class="footer-links">
 					<li *ngFor="let link of content.footer.navLinks">
-						<a [href]="link.href">{{ link.label }}</a>
+						<a *ngIf="link.href.startsWith('/')" [routerLink]="link.href">{{ link.label }}</a>
+						<a *ngIf="!link.href.startsWith('/')" [href]="link.href">{{ link.label }}</a>
 					</li>
 				</ul>
 			</div>

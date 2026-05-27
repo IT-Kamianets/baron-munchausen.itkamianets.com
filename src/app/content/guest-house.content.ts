@@ -7,10 +7,29 @@ export interface SectionMeta {
 	showInNav?: boolean;
 }
 
+export interface NavPage {
+	route: string;
+	label: string;
+}
+
 export interface ActionLink {
 	label: string;
 	href: string;
 	variant: 'primary' | 'outline';
+	action?: 'booking';
+}
+
+export interface BookingModal {
+	title: string;
+	subtitle: string;
+	namePlaceholder: string;
+	phonePlaceholder: string;
+	submitLabel: string;
+	sendingLabel: string;
+	cancelLabel: string;
+	successMessage: string;
+	errorMessage: string;
+	telegramMessage: (name: string, phone: string) => string;
 }
 
 export interface HeroImage {
@@ -115,6 +134,7 @@ export interface GuestHouseContent {
 		};
 	};
 	sections: SectionMeta[];
+	navPages: NavPage[];
 	externalLinks: ExternalLink[];
 	hero: {
 		title: string;
@@ -213,6 +233,7 @@ export interface GuestHouseContent {
 		githubUrl: string;
 		githubExternal: boolean;
 	};
+	bookingModal: BookingModal;
 }
 
 const UA_CONTENT: GuestHouseContent = {
@@ -237,6 +258,12 @@ const UA_CONTENT: GuestHouseContent = {
 		{ id: 'online', title: 'Онлайн', navLabel: 'Онлайн', showInNav: true },
 		{ id: 'contacts', title: 'Контакти', navLabel: 'Контакти', showInNav: true },
 		{ id: 'faq', title: 'FAQ', showInNav: false },
+	],
+	navPages: [
+		{ route: '/', label: 'Про дім' },
+		{ route: '/rooms', label: 'Номери' },
+		{ route: '/atmosphere', label: 'Галерея' },
+		{ route: '/contacts', label: 'Контакти' },
 	],
 	externalLinks: [
 		{
@@ -282,7 +309,8 @@ const UA_CONTENT: GuestHouseContent = {
 		highlights: ['Wi‑Fi', 'Кухня', 'Парковка', 'Ігрова зона'],
 		ctas: [
 			{ label: 'Зателефонувати', href: 'tel:+380675101504', variant: 'primary' },
-			{ label: 'Платформи бронювання', href: '#online', variant: 'outline' },
+			{ label: 'Забронювати', href: '#', variant: 'primary', action: 'booking' },
+			{ label: 'Платформи бронювання', href: '/contacts', variant: 'outline' },
 		],
 		image: {
 			src: 'assets/hero/hero-castle.jpg',
@@ -696,21 +724,28 @@ const UA_CONTENT: GuestHouseContent = {
 		description: 'Теплий простір для мандрівників, компаній і добрих історій.',
 		platformKeys: ['booking', 'hotels24', 'tripadvisor', 'skyscanner', 'maps'],
 		navLinks: [
-			{ label: 'Про дім', href: '#about' },
-			{ label: 'Номери', href: '#rooms' },
-			{ label: 'Зручності', href: '#amenities' },
-			{ label: 'Атмосфера', href: '#atmosphere' },
-			{ label: 'Галерея', href: '#gallery' },
-			{ label: 'Локація', href: '#location' },
-			{ label: 'Онлайн', href: '#online' },
-			{ label: 'Контакти', href: '#contacts' },
-			{ label: 'FAQ', href: '#faq' },
+			{ label: 'Про дім', href: '/' },
+			{ label: 'Номери', href: '/rooms' },
+			{ label: 'Галерея', href: '/atmosphere' },
+			{ label: 'Контакти', href: '/contacts' },
 		],
 		bottomLeft: '© 2026 Гостинний двір «Барон Мюнхаузен». Всі права захищені.',
 		githubLabel: 'GitHub',
 		githubIcon: 'GH',
 		githubUrl: 'https://github.com/IT-Kamianets/baron-munchausen.itkamianets.com',
 		githubExternal: true,
+	},
+	bookingModal: {
+		title: 'Запит на бронювання',
+		subtitle: 'Залиште ім\'я та телефон — ми зв\'яжемося з вами найближчим часом.',
+		namePlaceholder: 'Ваше ім\'я',
+		phonePlaceholder: 'Номер телефону',
+		submitLabel: 'Надіслати',
+		sendingLabel: 'Надсилаємо…',
+		cancelLabel: 'Скасувати',
+		successMessage: 'Дякуємо! Ми зателефонуємо вам найближчим часом.',
+		errorMessage: 'Не вдалося надіслати. Будь ласка, зателефонуйте нам.',
+		telegramMessage: (name, phone) => `📋 Запит на бронювання\nІм'я: ${name}\nТелефон: ${phone}`,
 	},
 };
 
@@ -736,6 +771,12 @@ const EN_CONTENT: GuestHouseContent = {
 		{ id: 'online', title: 'Online', navLabel: 'Online', showInNav: true },
 		{ id: 'contacts', title: 'Contacts', navLabel: 'Contacts', showInNav: true },
 		{ id: 'faq', title: 'FAQ', showInNav: false },
+	],
+	navPages: [
+		{ route: '/', label: 'About' },
+		{ route: '/rooms', label: 'Rooms' },
+		{ route: '/atmosphere', label: 'Gallery' },
+		{ route: '/contacts', label: 'Contacts' },
 	],
 	externalLinks: [
 		{
@@ -781,7 +822,8 @@ const EN_CONTENT: GuestHouseContent = {
 		highlights: ['Wi‑Fi', 'Kitchen', 'Parking', 'Game zone'],
 		ctas: [
 			{ label: 'Call us', href: 'tel:+380675101504', variant: 'primary' },
-			{ label: 'Booking platforms', href: '#online', variant: 'outline' },
+			{ label: 'Book now', href: '#', variant: 'primary', action: 'booking' },
+			{ label: 'Booking platforms', href: '/contacts', variant: 'outline' },
 		],
 		image: {
 			src: 'assets/hero/hero-castle.jpg',
@@ -1196,21 +1238,28 @@ const EN_CONTENT: GuestHouseContent = {
 		description: 'A warm space for travelers, groups, and good stories.',
 		platformKeys: ['booking', 'hotels24', 'tripadvisor', 'skyscanner', 'maps'],
 		navLinks: [
-			{ label: 'About', href: '#about' },
-			{ label: 'Rooms', href: '#rooms' },
-			{ label: 'Amenities', href: '#amenities' },
-			{ label: 'Atmosphere', href: '#atmosphere' },
-			{ label: 'Gallery', href: '#gallery' },
-			{ label: 'Location', href: '#location' },
-			{ label: 'Online', href: '#online' },
-			{ label: 'Contacts', href: '#contacts' },
-			{ label: 'FAQ', href: '#faq' },
+			{ label: 'About', href: '/' },
+			{ label: 'Rooms', href: '/rooms' },
+			{ label: 'Gallery', href: '/atmosphere' },
+			{ label: 'Contacts', href: '/contacts' },
 		],
 		bottomLeft: '© 2026 Baron Munchausen Guest House. All rights reserved.',
 		githubLabel: 'GitHub repository',
 		githubIcon: 'GH',
 		githubUrl: 'https://github.com/IT-Kamianets/baron-munchausen.itkamianets.com',
 		githubExternal: true,
+	},
+	bookingModal: {
+		title: 'Booking request',
+		subtitle: 'Leave your name and phone — we will contact you shortly.',
+		namePlaceholder: 'Your name',
+		phonePlaceholder: 'Phone number',
+		submitLabel: 'Send',
+		sendingLabel: 'Sending…',
+		cancelLabel: 'Cancel',
+		successMessage: 'Thank you! We will call you shortly.',
+		errorMessage: 'Could not send. Please call us directly.',
+		telegramMessage: (name, phone) => `📋 Booking request\nName: ${name}\nPhone: ${phone}`,
 	},
 };
 

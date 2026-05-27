@@ -1,0 +1,117 @@
+<main>
+	<section id="rooms" data-section class="section section-muted">
+		<div class="container">
+			<div class="section-header rooms-header">
+				<h2>{{ content.rooms.title }}</h2>
+				<p class="section-lead">{{ content.rooms.lead }}</p>
+				<div class="rooms-facts">
+					<span class="fact-pill" *ngFor="let fact of content.rooms.facts">{{ fact }}</span>
+				</div>
+				<div class="compass-divider" aria-hidden="true"></div>
+			</div>
+			<div class="room-filters">
+				<button
+					type="button"
+					class="btn btn-sm"
+					*ngFor="let filter of content.rooms.filters"
+					[class.btn-primary]="roomCategory === filter.id"
+					[class.btn-outline-primary]="roomCategory !== filter.id"
+					(click)="setRoomCategory(filter.id)"
+				>
+					{{ filter.label }}
+				</button>
+			</div>
+			<div class="row g-4">
+				<div class="col-md-6 col-lg-4" *ngFor="let room of filteredRooms">
+					<article class="room-card">
+						<div class="room-card-header">
+							<span class="room-icon" [ngSwitch]="room.icon">
+								<svg *ngSwitchCase="'dorm'" class="icon icon-lg" viewBox="0 0 24 24" aria-hidden="true">
+									<path
+										d="M4 4h16v4H4V4Zm0 6h16v10h-2v-2H6v2H4V10Zm3 2v4h4v-4H7Zm6 0v4h4v-4h-4Z"
+										fill="currentColor"
+									/>
+								</svg>
+								<svg *ngSwitchCase="'private'" class="icon icon-lg" viewBox="0 0 24 24" aria-hidden="true">
+									<path
+										d="M4 11l8-6 8 6v9h-5v-5H9v5H4v-9Z"
+										fill="currentColor"
+									/>
+								</svg>
+								<svg *ngSwitchCase="'studio'" class="icon icon-lg" viewBox="0 0 24 24" aria-hidden="true">
+									<path
+										d="M5 5h14v14H5V5Zm3 3v8h8V8H8Zm-3 12h14v2H5v-2Z"
+										fill="currentColor"
+									/>
+								</svg>
+							</span>
+							<h3 class="card-title">{{ room.title }}</h3>
+						</div>
+						<div class="room-badges">
+							<span class="badge room-badge">{{ room.capacity }}</span>
+							<span class="badge room-badge">{{ room.bathroom }}</span>
+						</div>
+						<ul class="card-list">
+							<li *ngFor="let feature of room.features">{{ feature }}</li>
+						</ul>
+						<p class="room-good-for">{{ room.goodFor }}</p>
+						<p class="card-note">{{ content.rooms.disclaimer }}</p>
+					</article>
+				</div>
+			</div>
+			<div class="room-note">
+				<span class="room-note-title">{{ content.rooms.noteTitle }}</span>
+				<ul>
+					<li *ngFor="let item of content.rooms.noteItems">{{ item }}</li>
+				</ul>
+			</div>
+		</div>
+	</section>
+
+	<section id="amenities" data-section class="section">
+		<div class="container">
+			<div class="section-header">
+				<h2>{{ content.amenities.title }}</h2>
+				<p class="section-lead">{{ content.amenities.lead }}</p>
+				<div class="compass-divider" aria-hidden="true"></div>
+			</div>
+			<div class="row g-4">
+				<div class="col-md-6 col-lg-4" *ngFor="let category of content.amenities.categories">
+					<article class="amenity-card">
+						<span class="amenity-icon" [ngSwitch]="category.icon">
+							<svg *ngSwitchCase="'comfort'" class="icon" viewBox="0 0 24 24" aria-hidden="true">
+								<path
+									d="M4 6h16v4H4V6Zm0 6h16v8H4v-8Zm3 2v4h4v-4H7Zm6 0v4h4v-4h-4Z"
+									fill="currentColor"
+								/>
+							</svg>
+							<svg *ngSwitchCase="'leisure'" class="icon" viewBox="0 0 24 24" aria-hidden="true">
+								<path
+									d="M7 4h10v4H7V4Zm-3 8h16v8H4v-8Zm3 2v4h4v-4H7Zm6 0v4h4v-4h-4Z"
+									fill="currentColor"
+								/>
+							</svg>
+							<svg *ngSwitchCase="'seasonal'" class="icon" viewBox="0 0 24 24" aria-hidden="true">
+								<path
+									d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z"
+									fill="currentColor"
+								/>
+							</svg>
+						</span>
+						<h3 class="card-title">{{ category.title }}</h3>
+						<ul class="card-list">
+							<li *ngFor="let item of category.items">{{ item }}</li>
+						</ul>
+						<p class="amenity-note" *ngIf="category.note">{{ category.note }}</p>
+					</article>
+				</div>
+			</div>
+			<div class="amenities-checklist">
+				<div class="check-item" *ngFor="let item of content.amenities.checklist">
+					<span class="check-icon" aria-hidden="true">✓</span>
+					<span>{{ item }}</span>
+				</div>
+			</div>
+		</div>
+	</section>
+</main>

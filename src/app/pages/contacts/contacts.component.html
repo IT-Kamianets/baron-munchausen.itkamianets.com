@@ -1,0 +1,169 @@
+<main>
+	<section id="location" data-section class="section section-muted">
+		<div class="container">
+			<div class="section-header">
+				<h2>{{ content.location.title }}</h2>
+			</div>
+			<div class="row g-4">
+				<div class="col-lg-6">
+					<p class="section-text">{{ content.location.address }}</p>
+					<p class="section-text muted">
+						{{ content.location.addressAltLabel }} {{ content.location.addressAlt }}
+					</p>
+					<div class="route-hint">
+						<span class="route-title">{{ content.location.routeTitle }}</span>
+						<ul>
+							<li *ngFor="let item of content.location.routeHints">{{ item }}</li>
+						</ul>
+					</div>
+					<ul class="distance-list">
+						<li *ngFor="let item of content.location.distances">
+							<span>{{ item.label }}</span>
+							<strong>{{ item.distance }}</strong>
+						</li>
+					</ul>
+					<p class="section-text muted">{{ content.location.storyLine }}</p>
+					<a
+						class="btn btn-outline-primary"
+						[href]="content.location.mapUrl"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						{{ content.location.mapLabel }}
+					</a>
+				</div>
+				<div class="col-lg-6">
+					<div class="ratio ratio-4x3 map-frame">
+						<iframe
+							[src]="mapEmbedUrl"
+							[title]="content.location.mapEmbedTitle"
+							loading="lazy"
+							referrerpolicy="no-referrer-when-downgrade"
+						></iframe>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="online" data-section class="section">
+		<div class="container">
+			<div class="section-header">
+				<h2>{{ content.online.title }}</h2>
+				<p class="section-lead">{{ content.online.lead }}</p>
+			</div>
+			<div class="row g-3">
+				<div class="col-12 col-md-6 col-lg-3" *ngFor="let link of content.externalLinks">
+					<a
+						class="platform-card"
+						[href]="link.url"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						<span class="platform-icon">
+							<img [src]="link.iconSrc" [alt]="link.title" loading="lazy" />
+						</span>
+						<span>
+							<span class="platform-label">{{ link.title }}</span>
+							<span class="platform-desc">{{ link.subtitle }}</span>
+						</span>
+					</a>
+				</div>
+			</div>
+			<div class="online-tip">
+				<span class="tip-stamp">{{ content.footer.monogram }}</span>
+				<div>
+					<span class="tip-title">{{ content.online.tipTitle }}</span>
+					<p class="tip-text">{{ content.online.tipText }}</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="contacts" data-section class="section section-muted">
+		<div class="container">
+			<div class="section-header">
+				<h2>{{ content.contacts.title }}</h2>
+			</div>
+			<div class="row g-4">
+				<div class="col-lg-6">
+					<p class="contact-name">{{ content.contacts.nameLine }}</p>
+					<div class="contact-actions">
+						<a
+							*ngFor="let phone of content.contacts.phones"
+							class="btn btn-outline-primary"
+							[attr.href]="'tel:' + phone.value"
+						>
+							{{ phone.display }}
+						</a>
+					</div>
+					<p class="section-text">{{ content.contacts.address }}</p>
+					<p class="section-text muted">
+						{{ content.contacts.addressAltLabel }} {{ content.contacts.addressAlt }}
+					</p>
+					<p class="section-text muted">{{ content.contacts.checkIn }}</p>
+					<p class="section-text muted">{{ content.contacts.checkOut }}</p>
+					<p class="section-text muted">{{ content.contacts.infoNote }}</p>
+				</div>
+				<div class="col-lg-6">
+					<div class="quick-actions">
+						<span class="quick-stamp">{{ content.footer.monogram }}</span>
+						<h3>{{ content.brand.infoNote }}</h3>
+						<div class="quick-buttons">
+							<a
+								class="btn btn-primary"
+								[href]="content.contacts.mapUrl"
+								target="_blank"
+								rel="noopener noreferrer"
+							>
+								{{ content.contacts.mapLabel }}
+							</a>
+							<a class="btn btn-outline-primary" href="#online">
+								{{ content.contacts.platformsLabel }}
+							</a>
+							<button type="button" class="btn btn-outline-primary" (click)="copyMapLink()">
+								{{ content.contacts.shareLabel }}
+							</button>
+						</div>
+						<div class="alert alert-success mt-3" role="status" *ngIf="copySuccess">
+							{{ content.contacts.copySuccess }}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="faq" data-section class="section">
+		<div class="container">
+			<div class="section-header">
+				<h2>{{ content.faq.title }}</h2>
+			</div>
+			<div class="accordion" id="faq-accordion">
+				<div class="accordion-item" *ngFor="let item of content.faq.items; let i = index">
+					<h3 class="accordion-header" [id]="'faq-heading-' + i">
+						<button
+							class="accordion-button"
+							[class.collapsed]="activeFaqIndex !== i"
+							type="button"
+							(click)="toggleFaq(i)"
+							[attr.aria-controls]="'faq-collapse-' + i"
+							[attr.aria-expanded]="activeFaqIndex === i"
+						>
+							{{ item.question }}
+						</button>
+					</h3>
+					<div
+						[id]="'faq-collapse-' + i"
+						class="accordion-collapse collapse"
+						[class.show]="activeFaqIndex === i"
+						[attr.aria-labelledby]="'faq-heading-' + i"
+					>
+						<div class="accordion-body">{{ item.answer }}</div>
+					</div>
+				</div>
+			</div>
+			<p class="section-note">{{ content.faq.note }}</p>
+		</div>
+	</section>
+</main>

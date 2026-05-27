@@ -1,0 +1,247 @@
+:host {
+	display: block;
+}
+
+.atmosphere-section {
+	background: linear-gradient(180deg, rgba(122, 86, 50, 0.12), rgba(249, 245, 235, 0.9));
+	position: relative;
+}
+
+.atmosphere-section::after {
+	content: '';
+	position: absolute;
+	right: 4%;
+	top: 10%;
+	width: 180px;
+	height: 180px;
+	background-image: url('/assets/brand/munchausen-motif.svg');
+	background-size: contain;
+	background-repeat: no-repeat;
+	opacity: 0.06;
+	pointer-events: none;
+}
+
+.atmosphere-pillars {
+	display: grid;
+	gap: 1rem;
+	margin-bottom: 1.25rem;
+}
+
+.pillar-card {
+	display: grid;
+	grid-template-columns: auto 1fr;
+	gap: 0.75rem;
+	align-items: start;
+	padding: 1rem;
+	border-radius: 14px;
+	background: rgba(255, 255, 255, 0.75);
+	border: 1px solid rgba(122, 86, 50, 0.12);
+	box-shadow: var(--shadow-soft);
+}
+
+.pillar-icon {
+	width: 2rem;
+	height: 2rem;
+	border-radius: 12px;
+	background: rgba(186, 142, 85, 0.2);
+	color: var(--wine);
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.pillar-card h3 {
+	font-size: 1rem;
+	margin: 0 0 0.25rem;
+	color: var(--ink-strong);
+}
+
+.pillar-card p {
+	margin: 0;
+	color: var(--ink);
+}
+
+.atmosphere-flourish {
+	font-weight: 600;
+	color: var(--wine);
+	margin: 1rem 0;
+}
+
+.atmosphere-note {
+	padding: 0.9rem 1rem;
+	border-radius: 12px;
+	background: rgba(255, 255, 255, 0.7);
+	border: 1px solid rgba(122, 86, 50, 0.18);
+	color: var(--muted);
+	font-size: 0.9rem;
+	margin-bottom: 1rem;
+}
+
+.atmosphere-chips {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5rem;
+}
+
+.pill-chip {
+	padding: 0.35rem 0.75rem;
+	border-radius: 999px;
+	background: rgba(122, 86, 50, 0.12);
+	border: 1px solid rgba(122, 86, 50, 0.2);
+	font-size: 0.8rem;
+	color: var(--ink);
+}
+
+.story-postcard {
+	border-radius: 18px;
+	padding: 1.2rem 1.4rem;
+	max-width: 420px;
+	margin-left: auto;
+}
+
+.gallery-micro {
+	margin: 0 0 1.5rem;
+	color: var(--muted);
+}
+
+.gallery-card {
+	display: flex;
+	flex-direction: column;
+	gap: 0.75rem;
+	width: 100%;
+	text-align: left;
+	background: #fff;
+	border-radius: 14px;
+	padding: 0.75rem;
+	border: 1px solid rgba(122, 86, 50, 0.12);
+	box-shadow: var(--shadow-soft);
+	cursor: pointer;
+	transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.gallery-card:hover {
+	transform: translateY(-2px) scale(1.01);
+	box-shadow: var(--shadow-strong);
+}
+
+.gallery-media {
+	border-radius: 10px;
+	overflow: hidden;
+	background: var(--parchment-strong);
+}
+
+.gallery-media img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.gallery-card-body {
+	display: grid;
+	gap: 0.25rem;
+}
+
+.gallery-card-title {
+	font-weight: 600;
+	color: var(--ink-strong);
+}
+
+.gallery-card-kind {
+	font-size: 0.8rem;
+	color: var(--muted);
+}
+
+.gallery-actions {
+	margin-top: 1.75rem;
+	display: flex;
+	justify-content: center;
+}
+
+.gallery-modal {
+	position: fixed;
+	inset: 0;
+	background: rgba(18, 14, 12, 0.65);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 1.5rem;
+	z-index: 1050;
+}
+
+.gallery-modal-dialog {
+	background: #fff;
+	border-radius: 18px;
+	max-width: min(96vw, 960px);
+	width: auto;
+	padding: 1rem;
+	position: relative;
+	box-shadow: 0 24px 60px rgba(0, 0, 0, 0.25);
+	max-height: 90vh;
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+}
+
+.modal-media {
+	flex: 1 1 auto;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	max-height: 70vh;
+	max-width: 100%;
+	overflow: hidden;
+	border-radius: 14px;
+	background: var(--parchment-strong);
+}
+
+.modal-media img {
+	max-height: 100%;
+	max-width: 100%;
+	width: auto;
+	height: auto;
+	object-fit: contain;
+}
+
+.gallery-modal-dialog.portrait .modal-media {
+	max-height: 60vh;
+}
+
+.modal-close {
+	position: absolute;
+	top: 1rem;
+	right: 1rem;
+	border: none;
+	background: rgba(0, 0, 0, 0.05);
+	border-radius: 50%;
+	width: 36px;
+	height: 36px;
+	font-size: 1.2rem;
+	line-height: 1;
+	cursor: pointer;
+}
+
+.modal-body {
+	margin-top: 0.75rem;
+}
+
+.modal-body h3 {
+	font-family: var(--font-display);
+	font-size: 1.4rem;
+	margin-bottom: 0.25rem;
+}
+
+.modal-kind {
+	color: var(--muted);
+	margin: 0;
+}
+
+.modal-footer {
+	margin-top: 0.75rem;
+	padding-top: 0.5rem;
+	border-top: 1px solid rgba(122, 86, 50, 0.15);
+}
+
+.modal-credit {
+	font-size: 0.85rem;
+	color: var(--muted);
+}

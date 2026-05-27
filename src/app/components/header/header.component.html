@@ -1,0 +1,59 @@
+<header #headerEl class="site-header fixed-top">
+	<nav class="navbar navbar-expand-lg navbar-light">
+		<div class="container">
+			<a class="navbar-brand" routerLink="/">
+				<span class="brand-monogram">{{ content.footer.monogram }}</span>
+				<span class="brand-title">{{ content.brand.nameEn }}</span>
+				<span class="brand-tagline">{{ content.brand.tagline }}</span>
+			</a>
+			<button
+				class="navbar-toggler"
+				type="button"
+				(click)="toggleNav()"
+				[attr.aria-expanded]="isNavOpen"
+				aria-controls="site-nav"
+				aria-label="Toggle navigation"
+			>
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="site-nav" [class.show]="isNavOpen">
+				<ul class="navbar-nav ms-lg-auto">
+					<li class="nav-item" *ngFor="let page of content.navPages">
+						<a
+							class="nav-link"
+							[routerLink]="page.route"
+							routerLinkActive="active"
+							[routerLinkActiveOptions]="{ exact: page.route === '/' }"
+							(click)="closeNav()"
+						>
+							{{ page.label }}
+						</a>
+					</li>
+				</ul>
+				<div class="nav-actions">
+					<span class="info-badge">{{ content.brand.infoNote }}</span>
+					<div class="lang-toggle" role="group" aria-label="Language toggle">
+						<button
+							type="button"
+							class="lang-btn"
+							[class.active]="currentLang === 'ua'"
+							(click)="setLang('ua')"
+							[attr.aria-pressed]="currentLang === 'ua'"
+						>
+							UA
+						</button>
+						<button
+							type="button"
+							class="lang-btn"
+							[class.active]="currentLang === 'en'"
+							(click)="setLang('en')"
+							[attr.aria-pressed]="currentLang === 'en'"
+						>
+							EN
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</nav>
+</header>

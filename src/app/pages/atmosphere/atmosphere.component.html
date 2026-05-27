@@ -1,0 +1,109 @@
+<main>
+	<section id="atmosphere" data-section class="section atmosphere-section">
+		<div class="container">
+			<div class="row g-4 align-items-center">
+				<div class="col-lg-7">
+					<div class="section-header">
+						<h2>{{ content.atmosphere.title }}</h2>
+						<p class="section-lead">{{ content.atmosphere.headline }}</p>
+					</div>
+					<div class="atmosphere-pillars">
+						<div class="pillar-card" *ngFor="let item of content.atmosphere.pillars">
+							<span class="pillar-icon" [ngSwitch]="item.icon">
+								<svg *ngSwitchCase="'group'" class="icon" viewBox="0 0 24 24" aria-hidden="true">
+									<path
+										d="M7 10a3 3 0 1 1 6 0 3 3 0 0 1-6 0Zm7 2a2.5 2.5 0 1 1 5 0 2.5 2.5 0 0 1-5 0Zm-7 5h7v4H4v-2a2 2 0 0 1 2-2Zm10 0h2a2 2 0 0 1 2 2v2h-4v-4Z"
+										fill="currentColor"
+									/>
+								</svg>
+								<svg *ngSwitchCase="'motion'" class="icon" viewBox="0 0 24 24" aria-hidden="true">
+									<path
+										d="M5 12h7l-2-2 1.4-1.4L16.8 14l-5.4 5.4L10 18l2-2H5v-4Z"
+										fill="currentColor"
+									/>
+								</svg>
+								<svg *ngSwitchCase="'quiet'" class="icon" viewBox="0 0 24 24" aria-hidden="true">
+									<path
+										d="M12 4c4 0 7 2.7 7 6s-3 6-7 6-7-2.7-7-6 3-6 7-6Zm-4 14h8l-4 4-4-4Z"
+										fill="currentColor"
+									/>
+								</svg>
+							</span>
+							<div>
+								<h3>{{ item.title }}</h3>
+								<p>{{ item.text }}</p>
+							</div>
+						</div>
+					</div>
+					<p class="atmosphere-flourish">{{ content.atmosphere.flourish }}</p>
+					<div class="atmosphere-note">{{ content.atmosphere.eventNote }}</div>
+					<div class="atmosphere-chips">
+						<span class="pill-chip" *ngFor="let item of content.atmosphere.inspiration">
+							{{ item }}
+						</span>
+					</div>
+				</div>
+				<div class="col-lg-5">
+					<div class="legend-card story-postcard">
+						<span class="legend-title">{{ content.atmosphere.legendTitle }}</span>
+						<p class="legend-line">{{ selectedAtmosphereLegendLine }}</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="gallery" data-section class="section">
+		<div class="container">
+			<div class="section-header">
+				<h2>{{ content.gallery.title }}</h2>
+				<p class="section-lead" *ngIf="content.gallery.note">{{ content.gallery.note }}</p>
+			</div>
+			<p class="gallery-micro">{{ content.gallery.microLine }}</p>
+			<div class="row g-3">
+				<div class="col-12 col-md-6 col-lg-4" *ngFor="let item of visibleGallery">
+					<button type="button" class="gallery-card" (click)="openGallery(item)">
+						<div class="ratio ratio-4x3 gallery-media">
+							<img [src]="item.src" [alt]="item.alt" loading="lazy" decoding="async" />
+						</div>
+						<div class="gallery-card-body">
+							<span class="gallery-card-title">{{ item.title }}</span>
+							<span class="gallery-card-kind">{{ content.gallery.kindLabels[item.kind] }}</span>
+						</div>
+					</button>
+				</div>
+			</div>
+			<div class="gallery-actions">
+				<button type="button" class="btn btn-outline-primary" (click)="toggleGallery()">
+					{{ galleryExpanded ? content.gallery.lessLabel : content.gallery.moreLabel }}
+				</button>
+			</div>
+		</div>
+	</section>
+</main>
+
+<div
+	*ngIf="selectedGalleryItem as item"
+	class="gallery-modal"
+	(click)="closeGallery()"
+>
+	<div
+		class="gallery-modal-dialog modal-dialog modal-dialog-centered modal-lg modal-fullscreen-sm-down"
+		[class.portrait]="isPortrait"
+		role="dialog"
+		aria-modal="true"
+		(click)="$event.stopPropagation()"
+	>
+		<button type="button" class="modal-close" (click)="closeGallery()">×</button>
+		<div class="modal-media">
+			<img [src]="item.src" [alt]="item.alt" />
+		</div>
+		<div class="modal-body">
+			<h3>{{ item.title }}</h3>
+			<p class="modal-kind">{{ content.gallery.kindLabels[item.kind] }}</p>
+		</div>
+		<div class="modal-footer" *ngIf="item.credit">
+			<span class="modal-credit">{{ content.gallery.creditLabel }} {{ item.credit }}</span>
+		</div>
+	</div>
+</div>

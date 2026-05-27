@@ -1,4 +1,5 @@
 ﻿import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { CONTENT, GuestHouseContent, Lang } from '../../content/guest-house.content';
@@ -6,7 +7,7 @@ import { LanguageService } from '../../services/language.service';
 
 @Component({
 	selector: 'app-footer',
-	imports: [CommonModule],
+	imports: [CommonModule, RouterLink],
 	templateUrl: './footer.component.html',
 	styleUrl: './footer.component.css',
 	changeDetection: ChangeDetectionStrategy.OnPush,
