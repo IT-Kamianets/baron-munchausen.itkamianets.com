@@ -24,6 +24,9 @@
 			<div class="row g-4">
 				<div class="col-md-6 col-lg-4" *ngFor="let room of filteredRooms">
 					<article class="room-card">
+						<div class="room-card-photo" *ngIf="room.image">
+							<img [src]="room.image" [alt]="room.title" loading="lazy" />
+						</div>
 						<div class="room-card-header">
 							<span class="room-icon" [ngSwitch]="room.icon">
 								<svg *ngSwitchCase="'dorm'" class="icon icon-lg" viewBox="0 0 24 24" aria-hidden="true">

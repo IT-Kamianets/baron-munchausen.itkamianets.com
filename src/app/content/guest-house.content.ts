@@ -46,6 +46,7 @@ export interface RoomType {
 	bathroom: string;
 	features: string[];
 	goodFor: string;
+	image?: string;
 }
 
 export interface AmenityCategory {
@@ -380,6 +381,7 @@ const UA_CONTENT: GuestHouseContent = {
 				bathroom: 'Санвузол: спільний',
 				features: ['Wi‑Fi', 'Опалення', 'Місце для речей', 'Світло біля ліжка'],
 				goodFor: 'Добре для компанії',
+				image: 'assets/gallery/real/Dorm1.jpg',
 			},
 			{
 				title: 'Dorm: змішаний 6‑місний',
@@ -389,6 +391,7 @@ const UA_CONTENT: GuestHouseContent = {
 				bathroom: 'Санвузол: спільний',
 				features: ['Wi‑Fi', 'Опалення', 'Місце для речей', 'Світло біля ліжка'],
 				goodFor: 'Добре для активних мандрівників',
+				image: 'assets/gallery/real/Dorm2.jpg',
 			},
 			{
 				title: 'Dorm: чоловічий 4‑місний',
@@ -398,6 +401,7 @@ const UA_CONTENT: GuestHouseContent = {
 				bathroom: 'Санвузол: спільний',
 				features: ['Wi‑Fi', 'Опалення', 'Місце для речей', 'Тиха локація'],
 				goodFor: 'Добре для тихої ночі',
+				image: 'assets/gallery/real/Dorm3.jpg',
 			},
 			{
 				title: 'Private: single',
@@ -407,6 +411,7 @@ const UA_CONTENT: GuestHouseContent = {
 				bathroom: 'Санвузол: уточнюйте (в окремих номерах — приватний)',
 				features: ['Wi‑Fi', 'Опалення', 'Робочий стіл', 'Місце для речей'],
 				goodFor: 'Добре для мандрівника',
+				image: 'assets/gallery/real/Private1.jpg',
 			},
 			{
 				title: 'Private: double',
@@ -416,6 +421,7 @@ const UA_CONTENT: GuestHouseContent = {
 				bathroom: 'Санвузол: уточнюйте (в окремих номерах — приватний)',
 				features: ['Wi‑Fi', 'Опалення', 'Затишна зона відпочинку', 'Місце для речей'],
 				goodFor: 'Добре для пари',
+				image: 'assets/gallery/real/Private2.jpg',
 			},
 			{
 				title: 'Арт‑студія',
@@ -425,6 +431,7 @@ const UA_CONTENT: GuestHouseContent = {
 				bathroom: 'Санвузол: приватний',
 				features: ['Wi‑Fi', 'Опалення', 'Міні‑кухня', 'Джакузі / гідромасажна ванна'],
 				goodFor: 'Добре для особливої події',
+				image: 'assets/gallery/real/Private3.jpg',
 			},
 		],
 	},
@@ -894,6 +901,7 @@ const EN_CONTENT: GuestHouseContent = {
 				bathroom: 'Bathroom: shared',
 				features: ['Wi‑Fi', 'Heating', 'Space for belongings', 'Reading light'],
 				goodFor: 'Good for groups',
+				image: 'assets/gallery/real/Dorm1.jpg',
 			},
 			{
 				title: 'Dorm: mixed 6-bed',
@@ -903,6 +911,7 @@ const EN_CONTENT: GuestHouseContent = {
 				bathroom: 'Bathroom: shared',
 				features: ['Wi‑Fi', 'Heating', 'Space for belongings', 'Reading light'],
 				goodFor: 'Good for active travelers',
+				image: 'assets/gallery/real/Dorm2.jpg',
 			},
 			{
 				title: 'Dorm: male 4-bed',
@@ -912,6 +921,7 @@ const EN_CONTENT: GuestHouseContent = {
 				bathroom: 'Bathroom: shared',
 				features: ['Wi‑Fi', 'Heating', 'Space for belongings', 'Quiet location'],
 				goodFor: 'Good for a quiet night',
+				image: 'assets/gallery/real/Dorm3.jpg',
 			},
 			{
 				title: 'Private: single',
@@ -921,6 +931,7 @@ const EN_CONTENT: GuestHouseContent = {
 				bathroom: 'Bathroom: please уточнюйте (some rooms have private bathrooms)',
 				features: ['Wi‑Fi', 'Heating', 'Desk', 'Space for belongings'],
 				goodFor: 'Good for a solo traveler',
+				image: 'assets/gallery/real/Private1.jpg',
 			},
 			{
 				title: 'Private: double',
@@ -930,6 +941,7 @@ const EN_CONTENT: GuestHouseContent = {
 				bathroom: 'Bathroom: please уточнюйте (some rooms have private bathrooms)',
 				features: ['Wi‑Fi', 'Heating', 'Cozy seating area', 'Space for belongings'],
 				goodFor: 'Good for couples',
+				image: 'assets/gallery/real/Private2.jpg',
 			},
 			{
 				title: 'Art studio',
@@ -939,6 +951,7 @@ const EN_CONTENT: GuestHouseContent = {
 				bathroom: 'Bathroom: private',
 				features: ['Wi‑Fi', 'Heating', 'Kitchenette', 'Jacuzzi / hydromassage bath'],
 				goodFor: 'Good for a special occasion',
+				image: 'assets/gallery/real/Private3.jpg',
 			},
 		],
 	},

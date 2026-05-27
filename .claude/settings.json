@@ -1,7 +1,9 @@
 {
   "permissions": {
     "allow": [
-      "Bash(npx ng *)"
+      "Bash(npx ng *)",
+      "Bash(dir \"c:\\\\Users\\\\Kristina\\\\work\\\\baron-munchausen.itkamianets.com\\\\src\\\\assets\" /s /b)",
+      "Bash(findstr /i \"dorm\")"
     ]
   }
 }
